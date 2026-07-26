@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------
+   BLOOD BRIDGE DESIGN TOKENS
+   Palette: institutional crimson + navy on warm-white, built for a
+   medical-university context — trustworthy, clinical, never alarmist.
+--------------------------------------------------------------------- */
+@theme {
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-crimson-50: #fdf2f3;
+  --color-crimson-100: #fbe2e5;
+  --color-crimson-200: #f5c1c8;
+  --color-crimson-300: #ea94a1;
+  --color-crimson-400: #dc5f74;
+  --color-crimson-500: #c81e3a;
+  --color-crimson-600: #b01530;
+  --color-crimson-700: #921029;
+  --color-crimson-800: #7a1026;
+  --color-crimson-900: #691024;
+
+  --color-navy-50: #eef4f9;
+  --color-navy-100: #d7e6f1;
+  --color-navy-200: #b3d0e5;
+  --color-navy-300: #82b0d3;
+  --color-navy-400: #4d8bbb;
+  --color-navy-500: #2b6ba2;
+  --color-navy-600: #1e5486;
+  --color-navy-700: #17436c;
+  --color-navy-800: #0b3c6b;
+  --color-navy-900: #0a2c4d;
+
+  --color-linen-50: #fefdfb;
+  --color-linen-100: #fbf9f5;
+  --color-linen-200: #f5f1e9;
+
+  --color-ink-900: #101828;
+  --color-ink-700: #344054;
+  --color-ink-500: #667085;
+
+  --color-mint-500: #1e8e5a;
+  --color-mint-100: #e3f5eb;
+
+  --color-amber-500: #b5720a;
+  --color-amber-100: #fbeed6;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-ink-900);
+    background-color: var(--color-linen-50);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+  ::selection {
+    background-color: var(--color-crimson-200);
+    color: var(--color-crimson-900);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-navy-500);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-crimson-500 px-6 py-3 font-display font-semibold text-white shadow-sm shadow-crimson-500/30 transition-all duration-200 hover:bg-crimson-600 hover:shadow-md hover:shadow-crimson-500/40 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-navy-800 bg-transparent px-6 py-3 font-display font-semibold text-navy-800 transition-all duration-200 hover:bg-navy-800 hover:text-white active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-display font-medium text-ink-700 transition-colors duration-200 hover:bg-navy-50 hover:text-navy-800;
+  }
+  .card {
+    @apply rounded-2xl border border-black/5 bg-white shadow-sm shadow-ink-900/5;
+  }
+  .input-field {
+    @apply w-full rounded-xl border border-black/10 bg-white px-4 py-2.5 text-ink-900 placeholder:text-ink-500/60 transition-colors duration-150 focus:border-navy-500 focus:outline-none focus:ring-2 focus:ring-navy-500/20;
+  }
+  .label-field {
+    @apply mb-1.5 block text-sm font-medium text-ink-700;
+  }
+  .eyebrow {
+    @apply font-mono text-xs font-semibold uppercase tracking-[0.18em] text-crimson-500;
+  }
+  .pulse-divider {
+    @apply block h-px w-full bg-gradient-to-r from-transparent via-crimson-300 to-transparent;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-pulse-slow {
+    animation: pulseSlow 3s ease-in-out infinite;
+  }
+  @keyframes pulseSlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
