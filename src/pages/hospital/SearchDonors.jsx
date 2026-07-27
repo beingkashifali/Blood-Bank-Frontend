@@ -86,14 +86,14 @@ const SearchDonors = () => {
           />
         </div>
         <div className="flex gap-3">
-          <button type="submit" className="btn-primary !py-2.5">
+          <button type="submit" className="btn-primary py-2.5!">
             <Search size={16} /> Search
           </button>
           {city && (
             <button
               type="button"
               onClick={handleClear}
-              className="btn-secondary !py-2.5"
+              className="btn-secondary py-2.5!"
             >
               Clear
             </button>
